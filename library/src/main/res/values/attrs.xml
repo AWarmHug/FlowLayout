@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlowRadioGroup">
+        <attr name="horizontalSize" format="integer" />
+        <attr name="spaceH" format="dimension" />
+        <attr name="spaceV" format="dimension" />
+    </declare-styleable>
+</resources>
