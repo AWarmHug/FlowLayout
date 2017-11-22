@@ -76,7 +76,113 @@
             android:textColor="@color/text_profit"
             android:textSize="20sp" />
 
+        <RadioButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_profit_rg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="700元"
+            android:textColor="@color/text_profit"
+            android:textSize="20sp" />
+        <RadioButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_profit_rg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="300元"
+            android:textColor="@color/text_profit"
+            android:textSize="20sp" />
 
+        <RadioButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_profit_rg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="400元"
+            android:textColor="@color/text_profit"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_profit_rg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="500元"
+            android:textColor="@color/text_profit"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_profit_rg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="600元"
+            android:textColor="@color/text_profit"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_profit_rg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="700元"
+            android:textColor="@color/text_profit"
+            android:textSize="20sp" />
+        <RadioButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_profit_rg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="300元"
+            android:textColor="@color/text_profit"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_profit_rg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="400元"
+            android:textColor="@color/text_profit"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_profit_rg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="500元"
+            android:textColor="@color/text_profit"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_profit_rg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="600元"
+            android:textColor="@color/text_profit"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_profit_rg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="700元"
+            android:textColor="@color/text_profit"
+            android:textSize="20sp" />
 
     </com.warm.library.FlowRadioGroup>
 
