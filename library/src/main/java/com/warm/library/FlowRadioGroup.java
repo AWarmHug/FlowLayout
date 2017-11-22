@@ -94,11 +94,8 @@ public class FlowRadioGroup extends RadioGroup {
                 }
                 // 此处增加onlayout中的换行判断，用于计算所需的高度
                 x += child.getMeasuredWidth();
-                x += spaceH;
-
                 //计算每添加一个子空间时的宽度，如果当前计算的宽度大于了父控件的宽度，这就需要换行
                 //每一行的高度以当前行最大的item为准
-
                 if (itemMaxHeight < child.getMeasuredHeight()) {
                     itemMaxHeight = child.getMeasuredHeight();
                 }
@@ -106,7 +103,6 @@ public class FlowRadioGroup extends RadioGroup {
                     y += itemMaxHeight;
                     heightUsed = y;
                 }
-
                 if (x > maxWidth) {
                     row++;
                     y += itemMaxHeight;
@@ -115,6 +111,7 @@ public class FlowRadioGroup extends RadioGroup {
                     x = getPaddingLeft() + getPaddingRight();
                     itemMaxHeight = 0;
                 }
+                x += spaceH;
                 widthUsed = x;
             }
         }
