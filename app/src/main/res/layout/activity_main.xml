@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         app:horizontalSize="3"
+        android:padding="16dp"
         app:spaceH="8dp"
         app:spaceV="8dp">
 
@@ -27,7 +28,7 @@
 
         <RadioButton
             android:layout_width="64dp"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:background="@drawable/bg_profit_rg"
             android:button="@null"
             android:gravity="center"

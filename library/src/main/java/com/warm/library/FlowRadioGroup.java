@@ -32,14 +32,14 @@ public class FlowRadioGroup extends RadioGroup {
     public FlowRadioGroup(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlowRadioGroup, 0, 0);
-        for (int i=0;i<array.getIndexCount();i++){
-            int item=array.getIndex(i);
-            if (item==R.styleable.FlowRadioGroup_horizontalSize){
-                horizontalSize=array.getInt(item,0);
-            }else if (item==R.styleable.FlowRadioGroup_spaceH){
-                spaceH=array.getDimensionPixelSize(item,0);
-            }else {
-                spaceV=array.getDimensionPixelSize(item,0);
+        for (int i = 0; i < array.getIndexCount(); i++) {
+            int item = array.getIndex(i);
+            if (item == R.styleable.FlowRadioGroup_horizontalSize) {
+                horizontalSize = array.getInt(item, 0);
+            } else if (item == R.styleable.FlowRadioGroup_spaceH) {
+                spaceH = array.getDimensionPixelSize(item, 0);
+            } else {
+                spaceV = array.getDimensionPixelSize(item, 0);
             }
         }
         array.recycle();
@@ -81,6 +81,7 @@ public class FlowRadioGroup extends RadioGroup {
         int y = getPaddingTop() + getPaddingBottom();
         int row = 1;
         int widthUsed = x, heightUsed = y;
+        int itemMaxHeight = 0;
 
         for (int i = 0; i < childCount; i++) {
             final View child = getChildAt(i);
@@ -94,18 +95,31 @@ public class FlowRadioGroup extends RadioGroup {
                 // 此处增加onlayout中的换行判断，用于计算所需的高度
                 x += child.getMeasuredWidth();
                 x += spaceH;
+
                 //计算每添加一个子空间时的宽度，如果当前计算的宽度大于了父控件的宽度，这就需要换行
-                y = row * child.getMeasuredHeight();
-                y += spaceV * (row - 1);
-                heightUsed = y;
+                //每一行的高度以当前行最大的item为准
+
+                if (itemMaxHeight < child.getMeasuredHeight()) {
+                    itemMaxHeight = child.getMeasuredHeight();
+                }
+                if (i==0) {
+                    y += itemMaxHeight;
+                    heightUsed = y;
+                }
+
                 if (x > maxWidth) {
                     row++;
+                    y += itemMaxHeight;
+                    y += spaceV;
+                    heightUsed = y;
                     x = getPaddingLeft() + getPaddingRight();
+                    itemMaxHeight = 0;
                 }
                 widthUsed = x;
-
             }
         }
+
+
         // 设置容器所需的宽度和高度
         setMeasuredDimension(maxWidth, y);
     }
@@ -162,24 +176,33 @@ public class FlowRadioGroup extends RadioGroup {
             int groupWidth = getMeasuredWidth();
             int left = getPaddingLeft();
             int top = getPaddingTop();
+            int itemMaxHeight = 0;
+
             int childCount = getChildCount();
             for (int i = 0; i < childCount; i++) {
-                View item = getChildAt(i);
-                if (item.getVisibility() != GONE) {
-                    //判断当前行最后一个left+item.getMeasuredWidth()，是否大于父控件的宽度，如果大于换行
-                    if (left + item.getMeasuredWidth() <= groupWidth - getPaddingRight()) {
+                View child = getChildAt(i);
+                if (child.getVisibility() != GONE) {
+                    //判断当前行最后一个left+child.getMeasuredWidth()，是否大于父控件的宽度，如果大于换行
+
+                    if (itemMaxHeight < child.getMeasuredHeight()) {
+                        itemMaxHeight = child.getMeasuredHeight();
+                    }
+
+                    if (left + child.getMeasuredWidth() <= groupWidth - getPaddingRight()) {
                         //每次摆放完成后，+横向间隙
-                        item.layout(left, top, left + item.getMeasuredWidth(), top + item.getMeasuredHeight());
-                        left += item.getMeasuredWidth();
+                        child.layout(left, top, left + child.getMeasuredWidth(), top + child.getMeasuredHeight());
+                        left += child.getMeasuredWidth();
                         left += spaceH;
+
                     } else {
                         //行数++,+纵向间隙，left恢复为原来值
-                        top += item.getMeasuredHeight();
+                        top += /*child.getMeasuredHeight()*/itemMaxHeight;
                         top += spaceV;
                         left = getPaddingLeft();
-                        item.layout(left, top, left + item.getMeasuredWidth(), top + item.getMeasuredHeight());
-                        left += item.getMeasuredWidth();
+                        child.layout(left, top, left + child.getMeasuredWidth(), top + child.getMeasuredHeight());
+                        left += child.getMeasuredWidth();
                         left += spaceH;
+                        itemMaxHeight = 0;
                     }
                 }
             }
