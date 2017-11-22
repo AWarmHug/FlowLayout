@@ -95,14 +95,15 @@ public class FlowRadioGroup extends RadioGroup {
                 x += child.getMeasuredWidth();
                 x += spaceH;
                 //计算每添加一个子空间时的宽度，如果当前计算的宽度大于了父控件的宽度，这就需要换行
+                y = row * child.getMeasuredHeight();
+                y += spaceV * (row - 1);
+                heightUsed = y;
                 if (x > maxWidth) {
                     row++;
                     x = getPaddingLeft() + getPaddingRight();
                 }
                 widthUsed = x;
-                y = row * child.getMeasuredHeight();
-                y += spaceV * (row - 1);
-                heightUsed = y;
+
             }
         }
         // 设置容器所需的宽度和高度

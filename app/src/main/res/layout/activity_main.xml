@@ -11,8 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
         app:horizontalSize="3"
         app:spaceH="8dp"
         app:spaceV="8dp">
