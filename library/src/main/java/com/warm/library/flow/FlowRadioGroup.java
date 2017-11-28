@@ -182,6 +182,8 @@ public class FlowRadioGroup extends FlowLayout {
                     id = getGenerateViewId();
                     child.setId(id);
                 }
+                //因为 ((RadioButton) child).setOnCheckedChangeWidgetListener隐藏，所以只能使用setOnCheckedChangeListener，
+                //所以在其他地方不要在使用setOnCheckedChangeListener.
                 ((RadioButton) child).setOnCheckedChangeListener(
                         mChildOnCheckedChangeListener);
             }
