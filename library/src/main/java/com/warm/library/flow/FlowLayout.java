@@ -151,7 +151,7 @@ public class FlowLayout extends ViewGroup {
         int childHeightMeasureSpec;
 
         if (horizontalSize != 0) {
-            itemWidth = (MeasureSpec.getSize(parentWidthMeasureSpec) - (getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin) - 2 * spaceH) / horizontalSize;
+            itemWidth = (MeasureSpec.getSize(parentWidthMeasureSpec) - (getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin) - (horizontalSize - 1) * spaceH) / horizontalSize;
         } else {
             itemWidth = lp.width;
         }
@@ -174,7 +174,7 @@ public class FlowLayout extends ViewGroup {
         int childHeightMeasureSpec;
 
         if (horizontalSize != 0) {
-            itemWidth = (MeasureSpec.getSize(parentWidthMeasureSpec) - 2 * spaceH) / horizontalSize;
+            itemWidth = (MeasureSpec.getSize(parentWidthMeasureSpec) - (getPaddingLeft() + getPaddingRight()) - (horizontalSize - 1) * spaceH) / horizontalSize;
         } else {
             itemWidth = lp.width;
         }
@@ -220,8 +220,8 @@ public class FlowLayout extends ViewGroup {
                 cr = cl + child.getMeasuredWidth();
                 cb = ct + child.getMeasuredHeight();
 
-                if (itemMaxHeight < child.getMeasuredHeight()+topMargin + bottomMargin) {
-                    itemMaxHeight = child.getMeasuredHeight()+topMargin + bottomMargin;
+                if (itemMaxHeight < child.getMeasuredHeight() + topMargin + bottomMargin) {
+                    itemMaxHeight = child.getMeasuredHeight() + topMargin + bottomMargin;
                 }
 
                 if (cr + rightMargin > groupWidth - getPaddingRight()) {

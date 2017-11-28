@@ -73,7 +73,7 @@
             android:id="@+id/rg_money"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:background="@color/colorBack"
             android:padding="16dp"
             app:flow_horizontalSize="3"
             app:flow_spaceH="8dp"
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorBack"
             android:padding="16dp">
 
             <RadioButton

@@ -70,7 +70,6 @@ public class FlowRadioGroup extends RadioGroup {
         this.spaceV = spaceV;
     }
 
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         //获取宽度
@@ -145,7 +144,7 @@ public class FlowRadioGroup extends RadioGroup {
         int childHeightMeasureSpec;
 
         if (horizontalSize != 0) {
-            itemWidth = (MeasureSpec.getSize(parentWidthMeasureSpec) - (getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin) - 2 * spaceH) / horizontalSize;
+            itemWidth = (MeasureSpec.getSize(parentWidthMeasureSpec) - (getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin) - (horizontalSize - 1) * spaceH) / horizontalSize;
         } else {
             itemWidth = lp.width;
         }
@@ -168,7 +167,7 @@ public class FlowRadioGroup extends RadioGroup {
         int childHeightMeasureSpec;
 
         if (horizontalSize != 0) {
-            itemWidth = (MeasureSpec.getSize(parentWidthMeasureSpec) - 2 * spaceH) / horizontalSize;
+            itemWidth = (MeasureSpec.getSize(parentWidthMeasureSpec) - (getPaddingLeft() + getPaddingRight()) - (horizontalSize - 1) * spaceH) / horizontalSize;
         } else {
             itemWidth = lp.width;
         }
@@ -214,8 +213,8 @@ public class FlowRadioGroup extends RadioGroup {
                 cr = cl + child.getMeasuredWidth();
                 cb = ct + child.getMeasuredHeight();
 
-                if (itemMaxHeight < child.getMeasuredHeight()+topMargin + bottomMargin) {
-                    itemMaxHeight = child.getMeasuredHeight()+topMargin + bottomMargin;
+                if (itemMaxHeight < child.getMeasuredHeight() + topMargin + bottomMargin) {
+                    itemMaxHeight = child.getMeasuredHeight() + topMargin + bottomMargin;
                 }
 
                 if (cr + rightMargin > groupWidth - getPaddingRight()) {

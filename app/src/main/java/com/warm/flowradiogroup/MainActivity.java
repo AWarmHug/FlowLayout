@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rb.setTextSize(18);
         rb.setGravity(Gravity.CENTER);
         rb.setText(String.format(Locale.CHINA, "%d元", money));
-        rb.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
-        rb.setLayoutParams(new FlowRadioGroup.LayoutParams(DisplayUtil.dp2px(this, 56), DisplayUtil.dp2px(this, 24)));
+        rb.setTextColor(ContextCompat.getColorStateList(this, R.color.text_profit));
+//        rb.setLayoutParams(new FlowRadioGroup.LayoutParams(DisplayUtil.dp2px(this, 56), DisplayUtil.dp2px(this, 24)));
         return rb;
     }
 
