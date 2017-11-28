@@ -1,2 +1,6 @@
-# FlowRadioGroup
-可以换行的RadioGroup
+# FlowLayout
+一个可以自动换行的Layout，一般用于tag显示。
+
+1、支持设置横纵向间隙；
+
+2、支持设置横向个数，纵向自适应。
