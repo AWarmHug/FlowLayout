@@ -208,7 +208,7 @@ public class FlowRadioGroup extends FlowLayout {
     }
 
 
-    public  int getGenerateViewId() {
+    public int getGenerateViewId() {
         for (; ; ) {
             final int result = sNextGeneratedId.get();
             // aapt-generated IDs have the high byte nonzero; clamp to the range under that.
