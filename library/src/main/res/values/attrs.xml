@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="FlowLayout">
+        <attr name="flow_horizontalSize" format="integer" />
+        <attr name="flow_spaceH" format="dimension" />
+        <attr name="flow_spaceV" format="dimension" />
+    </declare-styleable>
+
     <declare-styleable name="FlowRadioGroup">
         <attr name="horizontalSize" format="integer" />
         <attr name="spaceH" format="dimension" />
         <attr name="spaceV" format="dimension" />
     </declare-styleable>
+
 </resources>
