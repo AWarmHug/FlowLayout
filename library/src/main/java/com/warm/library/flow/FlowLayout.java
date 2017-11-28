@@ -93,33 +93,47 @@ public class FlowLayout extends ViewGroup {
             final View child = getChildAt(i);
             if (child.getVisibility() != View.GONE) {
                 ViewGroup.LayoutParams lp = child.getLayoutParams();
+
+                int childWidth = 0, childHeight = 0, wMargin = 0, hMargin = 0;
                 if (lp instanceof MarginLayoutParams) {
-                    measureChildWithMargins(child, widthMeasureSpec, widthUsed, heightMeasureSpec, heightUsed);
+                    MarginLayoutParams childLP = (MarginLayoutParams) lp;
+                    //如果传入widthUsed,当使用wrap_content，会自动适配为最小宽度，会使一行最边缘的控件宽度变为 parent#Width-widthUsed;
+                    //不理解为什么。
+                    measureChildWithMargins(child, widthMeasureSpec, 0/*widthUsed*/, heightMeasureSpec, heightUsed);
+                    wMargin = childLP.leftMargin + childLP.rightMargin;
+                    hMargin = childLP.topMargin + childLP.bottomMargin;
                 } else {
                     measureChild(child, widthMeasureSpec, heightMeasureSpec);
                 }
                 // 此处增加onlayout中的换行判断，用于计算所需的高度
-                x += child.getMeasuredWidth();
+                childWidth = child.getMeasuredWidth() + wMargin;
+                childHeight = child.getMeasuredHeight() + hMargin;
+                x += childWidth;
                 //计算每添加一个子空间时的宽度，如果当前计算的宽度大于了父控件的宽度，这就需要换行
                 //每一行的高度以当前行最大的item为准
-                if (itemMaxHeight < child.getMeasuredHeight()) {
-                    itemMaxHeight = child.getMeasuredHeight();
-                }
-                if (i == 0) {
+                if (itemMaxHeight == 0) {
+                    itemMaxHeight = childHeight;
                     y += itemMaxHeight;
-                    heightUsed = y;
+
+                } else {
+                    if (itemMaxHeight < childHeight) {
+                        y += (childHeight - itemMaxHeight);
+                    }
                 }
+
                 if (x > maxWidth) {
                     row++;
                     y += spaceV;
-                    y += itemMaxHeight;
-                    heightUsed = y;
                     x = getPaddingLeft() + getPaddingRight();
-                    x += child.getMeasuredWidth();
-                    itemMaxHeight = 0;
+                    x += childWidth;
+                    itemMaxHeight = childHeight;
+                    y += itemMaxHeight;
+
                 }
                 x += spaceH;
                 widthUsed = x;
+                heightUsed = y;
+
             }
         }
 
@@ -176,7 +190,6 @@ public class FlowLayout extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-//        if (changed) {
         int groupWidth = getMeasuredWidth();
         int left = getPaddingLeft();
         int top = getPaddingTop();
@@ -188,29 +201,49 @@ public class FlowLayout extends ViewGroup {
             if (child.getVisibility() != GONE) {
                 //判断当前行最后一个left+child.getMeasuredWidth()，是否大于父控件的宽度，如果大于换行
 
-                if (itemMaxHeight < child.getMeasuredHeight()) {
-                    itemMaxHeight = child.getMeasuredHeight();
+                ViewGroup.LayoutParams lp = child.getLayoutParams();
+
+
+                int leftMargin = 0, topMargin = 0, rightMargin = 0, bottomMargin = 0;
+
+                if (lp instanceof MarginLayoutParams) {
+                    MarginLayoutParams childLP = (MarginLayoutParams) lp;
+                    leftMargin = childLP.leftMargin;
+                    topMargin = childLP.topMargin;
+                    rightMargin = childLP.rightMargin;
+                    bottomMargin = childLP.bottomMargin;
+
+                }
+                int cl, ct, cr, cb;
+                cl = left + leftMargin;
+                ct = top + topMargin;
+                cr = cl + child.getMeasuredWidth();
+                cb = ct + child.getMeasuredHeight();
+
+                if (itemMaxHeight < child.getMeasuredHeight()+topMargin + bottomMargin) {
+                    itemMaxHeight = child.getMeasuredHeight()+topMargin + bottomMargin;
                 }
 
-                if (left + child.getMeasuredWidth() <= groupWidth - getPaddingRight()) {
-                    //每次摆放完成后，+横向间隙
-                    child.layout(left, top, left + child.getMeasuredWidth(), top + child.getMeasuredHeight());
-                    left += child.getMeasuredWidth();
-                    left += spaceH;
-
-                } else {
+                if (cr + rightMargin > groupWidth - getPaddingRight()) {
                     //行数++,+纵向间隙，left恢复为原来值
-                    top += /*child.getMeasuredHeight()*/itemMaxHeight;
-                    top += spaceV;
                     left = getPaddingLeft();
-                    child.layout(left, top, left + child.getMeasuredWidth(), top + child.getMeasuredHeight());
-                    left += child.getMeasuredWidth();
-                    left += spaceH;
+
+                    top += itemMaxHeight;
+                    top += spaceV;
+
                     itemMaxHeight = 0;
+
+                    cl = left + leftMargin;
+                    ct = top + topMargin;
+                    cr = cl + child.getMeasuredWidth();
+                    cb = ct + child.getMeasuredHeight();
                 }
+                child.layout(cl, ct, cr, cb);
+
+                left = cr + rightMargin;
+                left += spaceH;
             }
         }
-//        }
     }
 
 

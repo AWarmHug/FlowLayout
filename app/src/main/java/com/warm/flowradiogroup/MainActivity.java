@@ -8,8 +8,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
+import com.warm.library.flow.FlowLayout;
 import com.warm.library.flow.FlowRadioGroup;
 
 import java.util.ArrayList;
@@ -18,18 +18,19 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FlowRadioGroup rg_money;
-    private RadioGroup radio;
+    private com.warm.library.FlowRadioGroup radio;
     private Button bt_add, bt_delete;
-
+    private FlowLayout flow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        flow= (FlowLayout) findViewById(R.id.flow);
         rg_money = (FlowRadioGroup) findViewById(R.id.rg_money);
-        radio = (RadioGroup) findViewById(R.id.radio);
+        radio = (com.warm.library.FlowRadioGroup) findViewById(R.id.radio);
         bt_add = (Button) findViewById(R.id.bt_add);
         bt_delete = (Button) findViewById(R.id.bt_delete);
+        flow.setOnClickListener(this);
         bt_add.setOnClickListener(this);
         bt_delete.setOnClickListener(this);
         List<Integer> moneys = new ArrayList<>();
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void add() {
+        flow.addView(buildButton(100));
         rg_money.addView(buildButton(100));
         radio.addView(buildButton(100));
     }
@@ -75,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void delete() {
+        if (flow.getChildCount()!=0)
+            flow.removeViewAt(flow.getChildCount()-1);
         if (rg_money.getChildCount() != 0)
             rg_money.removeViewAt(rg_money.getChildCount() - 1);
         if (radio.getChildCount() != 0) {
