@@ -85,6 +85,9 @@ public class FlowLayout extends ViewGroup {
 
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        //实际计算得出的宽高
+        int measureWidth, measureHeight;
+
 
         int childCount = getChildCount();
         int x = getPaddingLeft() + getPaddingRight();
@@ -102,7 +105,6 @@ public class FlowLayout extends ViewGroup {
                 if (lp instanceof MarginLayoutParams) {
                     MarginLayoutParams childLP = (MarginLayoutParams) lp;
                     //如果传入widthUsed,当使用wrap_content，会自动适配为最小宽度，会使一行最边缘的控件宽度变为 parent#Width-widthUsed;
-                    //不理解为什么。
                     measureChildWithMargins(child, widthMeasureSpec, 0/*widthUsed*/, heightMeasureSpec, heightUsed);
                     wMargin = childLP.leftMargin + childLP.rightMargin;
                     hMargin = childLP.topMargin + childLP.bottomMargin;
@@ -140,13 +142,15 @@ public class FlowLayout extends ViewGroup {
             }
         }
 
-        if (heightMode != MeasureSpec.EXACTLY) {
-            heightSize = y;
+        if (heightMode == MeasureSpec.EXACTLY) {
+            measureHeight = heightSize;
+        } else {
+            measureHeight = y;
         }
-
+        measureWidth = widthSize;
 
         // 设置容器所需的宽度和高度
-        setMeasuredDimension(widthSize, heightSize);
+        setMeasuredDimension(measureWidth, measureHeight);
     }
 
     @Override

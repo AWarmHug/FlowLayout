@@ -3,80 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.warm.flowradiogroup.MainActivity">
+
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context="com.warm.flowradiogroup.MainActivity">
+        android:orientation="vertical">
 
         <com.warm.library.flow.FlowLayout
             android:id="@+id/flow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorBack">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/bt_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:text="add" />
 
             <Button
                 android:id="@+id/bt_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:text="delete" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="useless" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-
-                android:layout_marginRight="20dp"
-                android:text="useless" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="useless" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="useless" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="useless" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="useless" />
-
         </com.warm.library.flow.FlowLayout>
+
 
         <com.warm.library.flow.FlowRadioGroup
             android:id="@+id/rg_money"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:background="@color/colorBack"
             android:padding="16dp"
-            android:layout_marginTop="10dp"
+            app:flow_horizontalSize="3"
             app:flow_spaceH="8dp"
             app:flow_spaceV="8dp">
 

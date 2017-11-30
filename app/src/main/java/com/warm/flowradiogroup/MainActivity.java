@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         radio = (com.warm.library.FlowRadioGroup) findViewById(R.id.radio);
         bt_add = (Button) findViewById(R.id.bt_add);
         bt_delete = (Button) findViewById(R.id.bt_delete);
-        flow.setOnClickListener(this);
         bt_add.setOnClickListener(this);
         bt_delete.setOnClickListener(this);
         List<Integer> moneys = new ArrayList<>();

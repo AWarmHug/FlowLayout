@@ -73,7 +73,14 @@ public class FlowRadioGroup extends RadioGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         //获取宽度
-        int maxWidth = MeasureSpec.getSize(widthMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        //实际计算得出的宽高
+        int measureWidth, measureHeight;
+
 
         int childCount = getChildCount();
         int x = getPaddingLeft() + getPaddingRight();
@@ -91,7 +98,6 @@ public class FlowRadioGroup extends RadioGroup {
                 if (lp instanceof MarginLayoutParams) {
                     MarginLayoutParams childLP = (MarginLayoutParams) lp;
                     //如果传入widthUsed,当使用wrap_content，会自动适配为最小宽度，会使一行最边缘的控件宽度变为 parent#Width-widthUsed;
-                    //不理解为什么。
                     measureChildWithMargins(child, widthMeasureSpec, 0/*widthUsed*/, heightMeasureSpec, heightUsed);
                     wMargin = childLP.leftMargin + childLP.rightMargin;
                     hMargin = childLP.topMargin + childLP.bottomMargin;
@@ -114,7 +120,7 @@ public class FlowRadioGroup extends RadioGroup {
                     }
                 }
 
-                if (x > maxWidth) {
+                if (x > widthSize) {
                     row++;
                     y += spaceV;
                     x = getPaddingLeft() + getPaddingRight();
@@ -126,15 +132,19 @@ public class FlowRadioGroup extends RadioGroup {
                 x += spaceH;
                 widthUsed = x;
                 heightUsed = y;
-
             }
         }
 
+        if (heightMode == MeasureSpec.EXACTLY) {
+            measureHeight = heightSize;
+        } else {
+            measureHeight = y;
+        }
+        measureWidth = widthSize;
 
         // 设置容器所需的宽度和高度
-        setMeasuredDimension(maxWidth, y);
+        setMeasuredDimension(measureWidth, measureHeight);
     }
-
     @Override
     protected void measureChildWithMargins(View child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec, int heightUsed) {
         final MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
