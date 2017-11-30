@@ -43,7 +43,6 @@ public class FlowRadioGroup extends FlowLayout {
 
     @Override
     public void setOnHierarchyChangeListener(OnHierarchyChangeListener listener) {
-        // the user listener is delegated to our pass-through listener
         mPassThroughListener.mOnHierarchyChangeListener = listener;
     }
 
@@ -51,7 +50,6 @@ public class FlowRadioGroup extends FlowLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        // checks the appropriate radio button as requested in the XML file
         if (mCheckedId != -1) {
             mProtectFromCheckedChange = true;
             setCheckedStateForView(mCheckedId, true);
@@ -127,18 +125,9 @@ public class FlowRadioGroup extends FlowLayout {
     }
 
 
-    /**
-     * <p>Interface definition for a callback to be invoked when the checked
-     * radio button changed in this group.</p>
-     */
+
     public interface OnCheckedChangeListener {
-        /**
-         * <p>Called when the checked radio button has changed. When the
-         * selection is cleared, checkedId is -1.</p>
-         *
-         * @param group     the group in which the checked radio button has changed
-         * @param checkedId the unique identifier of the newly checked radio button
-         */
+
         public void onCheckedChanged(FlowRadioGroup group, int checkedId);
     }
 
@@ -162,18 +151,12 @@ public class FlowRadioGroup extends FlowLayout {
     }
 
 
-    /**
-     * <p>A pass-through listener acts upon the events and dispatches them
-     * to another listener. This allows the table layout to set its own internal
-     * hierarchy change listener without preventing the user to setup his.</p>
-     */
+
     private class PassThroughHierarchyChangeListener implements
             ViewGroup.OnHierarchyChangeListener {
         private ViewGroup.OnHierarchyChangeListener mOnHierarchyChangeListener;
 
-        /**
-         * {@inheritDoc}
-         */
+
         public void onChildViewAdded(View parent, View child) {
             if (parent == FlowRadioGroup.this && child instanceof RadioButton) {
                 int id = child.getId();
@@ -211,7 +194,6 @@ public class FlowRadioGroup extends FlowLayout {
     public int getGenerateViewId() {
         for (; ; ) {
             final int result = sNextGeneratedId.get();
-            // aapt-generated IDs have the high byte nonzero; clamp to the range under that.
             int newValue = result + 1;
             if (newValue > 0x00FFFFFF) newValue = 1; // Roll over to 1, not 0.
             if (sNextGeneratedId.compareAndSet(result, newValue)) {

@@ -30,7 +30,6 @@
                 android:text="delete" />
         </com.warm.library.flow.FlowLayout>
 
-
         <com.warm.library.flow.FlowRadioGroup
             android:id="@+id/rg_money"
             android:layout_width="match_parent"
