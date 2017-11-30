@@ -14,7 +14,6 @@ import com.warm.library.flow.FlowRadioGroup;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FlowRadioGroup rg_money;
@@ -32,17 +31,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bt_delete = (Button) findViewById(R.id.bt_delete);
         bt_add.setOnClickListener(this);
         bt_delete.setOnClickListener(this);
-        List<Integer> moneys = new ArrayList<>();
-        moneys.add(100);
-        moneys.add(200);
-        moneys.add(300);
-        moneys.add(400);
-        moneys.add(500);
-        moneys.add(600);
-        moneys.add(700);
+        List<String> tags = new ArrayList<>();
+        tags.add("你好啊");
+        tags.add("我不好");
+        tags.add("你很好，就是好");
+        tags.add("我说不好就是不好");
+        tags.add("说你好，你就好");
+        tags.add("不好");
+        tags.add("好");
+        tags.add("好个屁");
 
-        for (int i = 0; i < moneys.size(); i++) {
-          rg_money.addView(buildButton(moneys.get(i)));
+        for (int i = 0; i < tags.size(); i++) {
+          rg_money.addView(buildButton(tags.get(i)));
 
         }
     }
@@ -58,18 +58,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void add() {
-        flow.addView(buildButton(100));
-        rg_money.addView(buildButton(100));
-        radio.addView(buildButton(100));
+        flow.addView(buildButton("好好好好"));
+        rg_money.addView(buildButton("好个屁"));
+        radio.addView(buildButton("不好不好不好"));
     }
 
-    private RadioButton buildButton(int money) {
+    private RadioButton buildButton(String tag) {
         RadioButton rb = new RadioButton(this);
         rb.setBackgroundResource(R.drawable.bg_profit_rg);
         rb.setButtonDrawable(new ColorDrawable(ContextCompat.getColor(this, android.R.color.transparent)));
-        rb.setTextSize(18);
+        rb.setTextSize(14);
         rb.setGravity(Gravity.CENTER);
-        rb.setText(String.format(Locale.CHINA, "%d元", money));
+        rb.setText( tag);
         rb.setTextColor(ContextCompat.getColorStateList(this, R.color.text_profit));
 //        rb.setLayoutParams(new FlowRadioGroup.LayoutParams(DisplayUtil.dp2px(this, 56), DisplayUtil.dp2px(this, 24)));
         return rb;

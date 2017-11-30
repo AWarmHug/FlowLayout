@@ -37,7 +37,6 @@
             android:layout_marginTop="10dp"
             android:background="@color/colorBack"
             android:padding="16dp"
-            app:flow_horizontalSize="3"
             app:flow_spaceH="8dp"
             app:flow_spaceV="8dp">
 
@@ -50,40 +49,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@color/colorBack"
-            android:padding="16dp">
-
-            <RadioButton
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_profit_rg"
-                android:button="@null"
-                android:gravity="center"
-                android:text="100元"
-                android:textColor="@color/text_profit"
-                android:textSize="20sp" />
-
-            <RadioButton
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_profit_rg"
-                android:button="@null"
-                android:gravity="center"
-                android:text="200元"
-                android:textColor="@color/text_profit"
-                android:textSize="20sp" />
-
-            <RadioButton
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_profit_rg"
-                android:button="@null"
-                android:gravity="center"
-                android:text="300元"
-                android:textColor="@color/text_profit"
-                android:textSize="20sp" />
+            android:padding="16dp"
+            app:horizontalSize="3"
+            app:spaceH="8dp"
+            app:spaceV="8dp">
 
         </com.warm.library.FlowRadioGroup>
 
