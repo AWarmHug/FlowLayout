@@ -80,7 +80,11 @@ public class FlowLayout extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         //获取宽度
-        int maxWidth = MeasureSpec.getSize(widthMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
         int childCount = getChildCount();
         int x = getPaddingLeft() + getPaddingRight();
@@ -121,7 +125,7 @@ public class FlowLayout extends ViewGroup {
                     }
                 }
 
-                if (x > maxWidth) {
+                if (x > widthSize) {
                     row++;
                     y += spaceV;
                     x = getPaddingLeft() + getPaddingRight();
@@ -133,13 +137,16 @@ public class FlowLayout extends ViewGroup {
                 x += spaceH;
                 widthUsed = x;
                 heightUsed = y;
-
             }
+        }
+
+        if (heightMode != MeasureSpec.EXACTLY) {
+            heightSize = y;
         }
 
 
         // 设置容器所需的宽度和高度
-        setMeasuredDimension(maxWidth, y);
+        setMeasuredDimension(widthSize, heightSize);
     }
 
     @Override

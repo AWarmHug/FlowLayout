@@ -6,15 +6,16 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context="com.warm.flowradiogroup.MainActivity">
 
         <com.warm.library.flow.FlowLayout
             android:id="@+id/flow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBack">
 
             <Button
                 android:id="@+id/bt_add"
@@ -75,7 +76,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorBack"
             android:padding="16dp"
-            app:flow_horizontalSize="3"
+            android:layout_marginTop="10dp"
             app:flow_spaceH="8dp"
             app:flow_spaceV="8dp">
 
