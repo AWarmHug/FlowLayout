@@ -40,4 +40,4 @@ app:flow_spaceV="8dp"
 
 在项目.gradle中添加maven { url "https://jitpack.io" }
 
-在app.gradle中添加compile 'com.github.AWarmHug:FlowLayout:1.0.1'
+在app.gradle中添加compile 'com.github.AWarmHug:FlowLayout:x.y.z'
