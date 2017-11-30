@@ -7,7 +7,5 @@
 
 效果如下：
 
-```
 <img src="https://github.com/AWarmHug/FlowLayout/blob/master/screenshots/sample.png?raw=true" width="200px" />
-```
 
