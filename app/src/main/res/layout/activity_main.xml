@@ -12,6 +12,88 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="186dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <com.warm.library.flow.FlowLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:flow_horizontalSize="3"
+                app:flow_spaceH="8dp"
+                app:flow_spaceV="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@drawable/ic_zs"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="折扣套餐"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@mipmap/ic_zs"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="折扣套餐"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@mipmap/ic_zs"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="折扣套餐"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@mipmap/ic_zs"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="折扣套餐"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@mipmap/ic_zs"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="折扣套餐"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@mipmap/ic_zs"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="折扣套餐"
+                    android:textSize="12sp" />
+
+            </com.warm.library.flow.FlowLayout>
+
+        </LinearLayout>
+
+
+
         <com.warm.library.flow.FlowLayout
             android:id="@+id/flow"
             android:layout_width="match_parent"
@@ -29,6 +111,8 @@
                 android:layout_height="wrap_content"
                 android:text="delete" />
         </com.warm.library.flow.FlowLayout>
+
+
 
         <com.warm.library.flow.FlowRadioGroup
             android:id="@+id/rg_money"
@@ -57,4 +141,6 @@
         </com.warm.library.FlowRadioGroup>
 
     </LinearLayout>
+
+
 </ScrollView>

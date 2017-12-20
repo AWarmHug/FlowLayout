@@ -104,8 +104,12 @@ public class FlowLayout extends ViewGroup {
                 int childWidth = 0, childHeight = 0, wMargin = 0, hMargin = 0;
                 if (lp instanceof MarginLayoutParams) {
                     MarginLayoutParams childLP = (MarginLayoutParams) lp;
-                    //如果传入widthUsed,当使用wrap_content，会自动适配为最小宽度，会使一行最边缘的控件宽度变为 parent#Width-widthUsed;
-                    measureChildWithMargins(child, widthMeasureSpec, 0/*widthUsed*/, heightMeasureSpec, heightUsed);
+                    /**
+                     * 如果传入widthUsed,当使用wrap_content，会自动适配为最小宽度，会使一行最边缘的控件宽度变为 parent#Width-widthUsed;
+                     * 这个widthUsed和heightUsed,当前横 纵已经使用了长度，一般用于设置权重之后，计算剩余可以摆放的位置，如果没有权重只用传0就可以，
+                     * 可以看{@link android.widget.LinearLayout#measureHorizontal（1018行，1117行）和measureChildBeforeLayout}
+                     */
+                    measureChildWithMargins(child, widthMeasureSpec, 0/*widthUsed*/, heightMeasureSpec, /*heightUsed*/0);
                     wMargin = childLP.leftMargin + childLP.rightMargin;
                     hMargin = childLP.topMargin + childLP.bottomMargin;
                 } else {
