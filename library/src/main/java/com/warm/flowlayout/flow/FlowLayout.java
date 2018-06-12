@@ -1,14 +1,20 @@
-package com.warm.library;
+package com.warm.flowlayout.flow;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
 
+import com.warm.flowlayout.R;
 
-public class FlowRadioGroup extends RadioGroup {
+/**
+ * 作者：warm
+ * 时间：2017-11-23 16:14
+ * 描述：
+ */
+
+public class FlowLayout extends ViewGroup {
 
     /**
      * 横向间隙
@@ -25,18 +31,18 @@ public class FlowRadioGroup extends RadioGroup {
      */
     private int horizontalSize;
 
-    public FlowRadioGroup(Context context) {
+    public FlowLayout(Context context) {
         this(context, null);
     }
 
-    public FlowRadioGroup(Context context, AttributeSet attrs) {
+    public FlowLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlowRadioGroup, 0, 0);
+        TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlowLayout, 0, 0);
         for (int i = 0; i < array.getIndexCount(); i++) {
             int item = array.getIndex(i);
-            if (item == R.styleable.FlowRadioGroup_horizontalSize) {
+            if (item == R.styleable.FlowLayout_flow_horizontalSize) {
                 horizontalSize = array.getInt(item, 0);
-            } else if (item == R.styleable.FlowRadioGroup_spaceH) {
+            } else if (item == R.styleable.FlowLayout_flow_spaceH) {
                 spaceH = array.getDimensionPixelSize(item, 0);
             } else {
                 spaceV = array.getDimensionPixelSize(item, 0);
@@ -70,6 +76,7 @@ public class FlowRadioGroup extends RadioGroup {
         this.spaceV = spaceV;
     }
 
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         //获取宽度
@@ -99,7 +106,7 @@ public class FlowRadioGroup extends RadioGroup {
                     MarginLayoutParams childLP = (MarginLayoutParams) lp;
                     /**
                      * 如果传入widthUsed,当使用wrap_content，会自动适配为最小宽度，会使一行最边缘的控件宽度变为 parent#Width-widthUsed;
-                     * 这个widthUsed和heightUsed 一般用于设置权重之后，计算剩余可以摆放的位置，如果没有权重只用传0就可以，
+                     * 这个widthUsed和heightUsed,当前横 纵已经使用了长度，一般用于设置权重之后，计算剩余可以摆放的位置，如果没有权重只用传0就可以，
                      * 可以看{@link android.widget.LinearLayout#measureHorizontal（1018行，1117行）和measureChildBeforeLayout}
                      */
                     measureChildWithMargins(child, widthMeasureSpec, 0/*widthUsed*/, heightMeasureSpec, /*heightUsed*/0);
@@ -254,12 +261,23 @@ public class FlowRadioGroup extends RadioGroup {
         }
     }
 
+
+    @Override
+    protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
+        return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+    }
+
+    @Override
+    protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
+        return new LayoutParams(p);
+    }
+
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new LayoutParams(getContext(), attrs);
     }
 
-    public static class LayoutParams extends RadioGroup.LayoutParams {
+    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
         }

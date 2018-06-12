@@ -9,15 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
-import com.warm.library.flow.FlowLayout;
-import com.warm.library.flow.FlowRadioGroup;
+import com.warm.flowlayout.flow.FlowLayout;
+import com.warm.flowlayout.flow.FlowRadioGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FlowRadioGroup rg_money;
-    private com.warm.library.FlowRadioGroup radio;
+    private com.warm.flowlayout.FlowRadioGroup radio;
     private Button bt_add, bt_delete;
     private FlowLayout flow;
     @Override
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         flow= (FlowLayout) findViewById(R.id.flow);
         rg_money = (FlowRadioGroup) findViewById(R.id.rg_money);
-        radio = (com.warm.library.FlowRadioGroup) findViewById(R.id.radio);
+        radio = (com.warm.flowlayout.FlowRadioGroup) findViewById(R.id.radio);
         bt_add = (Button) findViewById(R.id.bt_add);
         bt_delete = (Button) findViewById(R.id.bt_delete);
         bt_add.setOnClickListener(this);

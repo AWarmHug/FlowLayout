@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
 
-            <com.warm.library.flow.FlowLayout
+            <com.warm.flowlayout.flow.FlowLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:flow_horizontalSize="3"
@@ -88,13 +88,13 @@
                     android:text="折扣套餐"
                     android:textSize="12sp" />
 
-            </com.warm.library.flow.FlowLayout>
+            </com.warm.flowlayout.flow.FlowLayout>
 
         </LinearLayout>
 
 
 
-        <com.warm.library.flow.FlowLayout
+        <com.warm.flowlayout.flow.FlowLayout
             android:id="@+id/flow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -110,11 +110,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="delete" />
-        </com.warm.library.flow.FlowLayout>
+        </com.warm.flowlayout.flow.FlowLayout>
 
 
 
-        <com.warm.library.flow.FlowRadioGroup
+        <com.warm.flowlayout.flow.FlowRadioGroup
             android:id="@+id/rg_money"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -125,9 +125,9 @@
             app:flow_spaceV="8dp">
 
 
-        </com.warm.library.flow.FlowRadioGroup>
+        </com.warm.flowlayout.flow.FlowRadioGroup>
 
-        <com.warm.library.FlowRadioGroup
+        <com.warm.flowlayout.FlowRadioGroup
             android:id="@+id/radio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
             app:spaceH="8dp"
             app:spaceV="8dp">
 
-        </com.warm.library.FlowRadioGroup>
+        </com.warm.flowlayout.FlowRadioGroup>
 
     </LinearLayout>
 
