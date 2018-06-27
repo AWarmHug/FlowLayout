@@ -110,21 +110,22 @@ public class FlowLayout extends ViewGroup {
                 cw = child.getMeasuredWidth() + cwMargin;
                 ch = child.getMeasuredHeight() + chMargin;
 
-                if (itemMaxHeight == 0) {
-                    //计算每添加一个子空间时的宽度，如果当前计算的宽度大于了父控件的宽度，这就需要换行
-                    //每一行的高度以当前行最大的item为准
-                    y += ch;
-                }
+
                 if (itemMaxHeight < ch) {
+                    if (itemMaxHeight == 0) {
+                        //计算每添加一个子空间时的宽度，如果当前计算的宽度大于了父控件的宽度，这就需要换行
+                        //每一行的高度以当前行最大的item为准
+                        y += ch;
+                    } else {
+                        y += ch - itemMaxHeight;
+                    }
                     itemMaxHeight = ch;
                 }
-
                 x += cw;
-
                 if (x > widthSize) {
+                    itemMaxHeight = ch;
                     y += itemMaxHeight;
                     y += mSpaceV;
-                    itemMaxHeight = ch;
                     x = getPaddingLeft() + getPaddingRight();
                     x += cw;
                 }

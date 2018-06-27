@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tags.add("不好");
         tags.add("好");
         tags.add("好个屁");
+        tags.add("不好不好不好不好不好不好");
+        tags.add("不好不好不好不好不好不好");
+        tags.add("不好不好不好不好不好不好");
+        tags.add("不好不好不好不好不好不好");
+        tags.add("不好不好不好不好不好不好");
 
         for (int i = 0; i < tags.size(); i++) {
             radio.addView(buildButton(tags.get(i)));
@@ -52,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void add() {
-        radio.addView(buildButton("不好不好不好"));
+
+        radio.addView(buildButton("不好不好不好不好不好不好"));
     }
 
     private RadioButton buildButton(String tag) {
