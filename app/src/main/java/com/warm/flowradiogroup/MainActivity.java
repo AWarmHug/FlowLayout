@@ -9,24 +9,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
-import com.warm.flowlayout.flow.FlowLayout;
-import com.warm.flowlayout.flow.FlowRadioGroup;
+import com.warm.flowlayout.FlowLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private FlowRadioGroup rg_money;
-    private com.warm.flowlayout.FlowRadioGroup radio;
+    private FlowLayout radio;
     private Button bt_add, bt_delete;
-    private FlowLayout flow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        flow= (FlowLayout) findViewById(R.id.flow);
-        rg_money = (FlowRadioGroup) findViewById(R.id.rg_money);
-        radio = (com.warm.flowlayout.FlowRadioGroup) findViewById(R.id.radio);
+        radio = (FlowLayout) findViewById(R.id.radio);
         bt_add = (Button) findViewById(R.id.bt_add);
         bt_delete = (Button) findViewById(R.id.bt_delete);
         bt_add.setOnClickListener(this);
@@ -34,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         List<String> tags = new ArrayList<>();
         tags.add("你好啊");
         tags.add("我不好");
-        tags.add("你很好，就是好");
+        tags.add("你很好，就是好啊啊啊");
         tags.add("我说不好就是不好");
         tags.add("说你好，你就好");
         tags.add("不好");
@@ -42,8 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tags.add("好个屁");
 
         for (int i = 0; i < tags.size(); i++) {
-          rg_money.addView(buildButton(tags.get(i)));
-
+            radio.addView(buildButton(tags.get(i)));
         }
     }
 
@@ -58,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void add() {
-        flow.addView(buildButton("好好好好"));
-        rg_money.addView(buildButton("好个屁"));
         radio.addView(buildButton("不好不好不好"));
     }
 
@@ -76,10 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void delete() {
-        if (flow.getChildCount()!=0)
-            flow.removeViewAt(flow.getChildCount()-1);
-        if (rg_money.getChildCount() != 0)
-            rg_money.removeViewAt(rg_money.getChildCount() - 1);
         if (radio.getChildCount() != 0) {
             radio.removeViewAt(radio.getChildCount() - 1);
         }

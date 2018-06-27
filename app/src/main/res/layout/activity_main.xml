@@ -21,12 +21,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
 
-            <com.warm.flowlayout.flow.FlowLayout
+            <com.warm.flowlayout.FlowLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:flow_horizontalSize="3"
-                app:flow_spaceH="8dp"
-                app:flow_spaceV="8dp">
+                app:horizontalSize="3"
+                app:spaceH="8dp"
+                app:spaceV="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -42,6 +42,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="24dp"
+                    android:drawableTop="@mipmap/ic_zs"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="折扣套餐"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="24dp"
                     android:drawableTop="@mipmap/ic_zs"
                     android:gravity="center"
                     android:paddingTop="10dp"
@@ -78,24 +90,84 @@
                     android:text="折扣套餐"
                     android:textSize="12sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:drawableTop="@mipmap/ic_zs"
-                    android:gravity="center"
-                    android:paddingTop="10dp"
-                    android:text="折扣套餐"
-                    android:textSize="12sp" />
+            </com.warm.flowlayout.FlowLayout>
 
-            </com.warm.flowlayout.flow.FlowLayout>
 
         </LinearLayout>
 
+        <com.warm.flowlayout.FlowLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            app:spaceH="8dp"
+            app:spaceV="8dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/ic_zs"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="折扣套餐"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@mipmap/ic_zs"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="折扣套餐"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@mipmap/ic_zs"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="折扣套餐"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:drawableTop="@mipmap/ic_zs"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="折扣套餐"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@mipmap/ic_zs"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="折扣套餐"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@mipmap/ic_zs"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="折扣套餐"
+                android:textSize="12sp" />
+
+        </com.warm.flowlayout.FlowLayout>
 
 
-        <com.warm.flowlayout.flow.FlowLayout
-            android:id="@+id/flow"
+        <com.warm.flowlayout.FlowLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -110,24 +182,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="delete" />
-        </com.warm.flowlayout.flow.FlowLayout>
+        </com.warm.flowlayout.FlowLayout>
 
 
-
-        <com.warm.flowlayout.flow.FlowRadioGroup
-            android:id="@+id/rg_money"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorBack"
-            android:padding="16dp"
-            app:flow_spaceH="8dp"
-            app:flow_spaceV="8dp">
-
-
-        </com.warm.flowlayout.flow.FlowRadioGroup>
-
-        <com.warm.flowlayout.FlowRadioGroup
+        <com.warm.flowlayout.FlowLayout
             android:id="@+id/radio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -138,7 +196,30 @@
             app:spaceH="8dp"
             app:spaceV="8dp">
 
-        </com.warm.flowlayout.FlowRadioGroup>
+        </com.warm.flowlayout.FlowLayout>
+
+        <com.warm.flowlayout.FlowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:horizontalSize="3">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="button" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:text="button" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:text="button" />
+        </com.warm.flowlayout.FlowLayout>
 
     </LinearLayout>
 
