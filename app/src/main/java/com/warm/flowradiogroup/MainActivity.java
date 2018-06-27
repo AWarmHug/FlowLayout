@@ -12,9 +12,6 @@ import android.widget.RadioButton;
 import com.warm.flowlayout.FlowLayout;
 import com.warm.flowlayout.FlowRadioGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FlowRadioGroup radio;
     private FlowLayout flow;
@@ -30,23 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bt_delete = (Button) findViewById(R.id.bt_delete);
         bt_add.setOnClickListener(this);
         bt_delete.setOnClickListener(this);
-        List<String> tags = new ArrayList<>();
-        tags.add("你好啊");
-        tags.add("我不好");
-        tags.add("你很好，就是好啊啊啊");
-        tags.add("我说不好就是不好");
-        tags.add("说你好，你就好");
-        tags.add("不好");
-        tags.add("好");
-        tags.add("好个屁");
-        tags.add("不好不好不好不好不好不好");
-        tags.add("不好不好不好不好不好不好");
-        tags.add("不好不好不好不好不好不好");
-        tags.add("不好不好不好不好不好不好");
-        tags.add("不好不好不好不好不好不好");
-
-        for (int i = 0; i < tags.size(); i++) {
-            radio.addView(buildRadioButton(tags.get(i)));
+        String[] tags = "一个人的一生,应该是这,样度过的,当他回首往事的时候,他不会,因为虚度年华,而悔恨,也不会因为碌碌无为,而羞耻,《钢铁是怎样炼成的》".split(",");
+        for (int i = 0; i < tags.length; i++) {
+            radio.addView(buildRadioButton(tags[i]));
         }
     }
 
@@ -62,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void add() {
 
-        radio.addView(buildRadioButton("不好不好不好不好不好不好"));
-        flow.addView(buildButton("这是按钮"));
+        radio.addView(buildRadioButton("《钢铁是怎样炼成的》"));
+        flow.addView(buildButton("保尔·柯察金"));
     }
 
     private RadioButton buildRadioButton(String tag) {
@@ -74,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rb.setGravity(Gravity.CENTER);
         rb.setText(tag);
         rb.setTextColor(ContextCompat.getColorStateList(this, R.color.text_profit));
+        rb.setPadding(16,8,16,8);
 //        rb.setLayoutParams(new FlowRadioGroup.LayoutParams(DisplayUtil.dp2px(this, 56), DisplayUtil.dp2px(this, 24)));
         return rb;
     }
