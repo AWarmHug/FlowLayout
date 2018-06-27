@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="186dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <View
@@ -23,7 +23,7 @@
 
             <com.warm.flowlayout.FlowLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:horizontalSize="3"
                 app:spaceH="8dp"
                 app:spaceV="8dp">
@@ -137,7 +137,7 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="24dp"
+                android:layout_marginLeft="16dp"
                 android:drawableTop="@mipmap/ic_zs"
                 android:gravity="center"
                 android:paddingTop="10dp"
@@ -185,7 +185,7 @@
         </com.warm.flowlayout.FlowLayout>
 
 
-        <com.warm.flowlayout.FlowLayout
+        <com.warm.flowlayout.FlowRadioGroup
             android:id="@+id/radio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
             app:spaceH="8dp"
             app:spaceV="8dp">
 
-        </com.warm.flowlayout.FlowLayout>
+        </com.warm.flowlayout.FlowRadioGroup>
 
         <com.warm.flowlayout.FlowLayout
             android:layout_width="match_parent"
@@ -218,6 +218,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
+                android:text="button" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+
+                android:text="button" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+
+                android:text="button" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="button" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
                 android:text="button" />
         </com.warm.flowlayout.FlowLayout>
 

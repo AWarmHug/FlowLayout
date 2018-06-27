@@ -83,22 +83,16 @@ public class FlowLayout extends ViewGroup {
 
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-        //实际计算得出的宽高
-        int measureWidth, measureHeight;
 
-
-        int childCount = getChildCount();
         int x = getPaddingLeft() + getPaddingRight();
         int y = getPaddingTop() + getPaddingBottom();
-        int row = 1;
         int itemMaxHeight = 0;
-
-        for (int i = 0; i < childCount; i++) {
+        for (int i = 0; i < getChildCount(); i++) {
             final View child = getChildAt(i);
             if (child.getVisibility() != View.GONE) {
                 ViewGroup.LayoutParams lp = child.getLayoutParams();
 
-                int childWidth = 0, childHeight = 0, wMargin = 0, hMargin = 0;
+                int cw, ch, cwMargin = 0, chMargin = 0;
                 if (lp instanceof MarginLayoutParams) {
                     MarginLayoutParams childLP = (MarginLayoutParams) lp;
                     /**
@@ -107,48 +101,40 @@ public class FlowLayout extends ViewGroup {
                      * 可以看{@link android.widget.LinearLayout#measureHorizontal（1018行，1117行）和measureChildBeforeLayout}
                      */
                     measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, 0);
-                    wMargin = childLP.leftMargin + childLP.rightMargin;
-                    hMargin = childLP.topMargin + childLP.bottomMargin;
+                    cwMargin = childLP.leftMargin + childLP.rightMargin;
+                    chMargin = childLP.topMargin + childLP.bottomMargin;
                 } else {
                     measureChild(child, widthMeasureSpec, heightMeasureSpec);
                 }
-                // 此处增加onlayout中的换行判断，用于计算所需的高度
-                childWidth = child.getMeasuredWidth() + wMargin;
-                childHeight = child.getMeasuredHeight() + hMargin;
-                x += childWidth;
-                //计算每添加一个子空间时的宽度，如果当前计算的宽度大于了父控件的宽度，这就需要换行
-                //每一行的高度以当前行最大的item为准
-                if (itemMaxHeight == 0) {
-                    itemMaxHeight = childHeight;
-                    y += itemMaxHeight;
 
-                } else {
-                    if (itemMaxHeight < childHeight) {
-                        y += (childHeight - itemMaxHeight);
-                    }
+                cw = child.getMeasuredWidth() + cwMargin;
+                ch = child.getMeasuredHeight() + chMargin;
+
+                if (itemMaxHeight == 0) {
+                    //计算每添加一个子空间时的宽度，如果当前计算的宽度大于了父控件的宽度，这就需要换行
+                    //每一行的高度以当前行最大的item为准
+                    y += ch;
+                }
+                if (itemMaxHeight < ch) {
+                    itemMaxHeight = ch;
                 }
 
-                if (x > widthSize) {
-                    row++;
-                    y += mSpaceV;
-                    x = getPaddingLeft() + getPaddingRight();
-                    x += childWidth;
-                    itemMaxHeight = childHeight;
-                    y += itemMaxHeight;
+                x += cw;
 
+                if (x > widthSize) {
+                    y += itemMaxHeight;
+                    y += mSpaceV;
+                    itemMaxHeight = ch;
+                    x = getPaddingLeft() + getPaddingRight();
+                    x += cw;
                 }
                 x += mSpaceH;
             }
         }
 
-        if (heightMode == MeasureSpec.EXACTLY) {
-            measureHeight = heightSize;
-        } else {
-            measureHeight = y;
-        }
-        measureWidth = widthSize;
-
-        // 设置容器所需的宽度和高度
+        //实际计算得出的宽高
+        int measureWidth = widthSize;
+        int measureHeight = heightMode == MeasureSpec.EXACTLY ? heightSize : y;
         setMeasuredDimension(measureWidth, measureHeight);
     }
 
@@ -241,6 +227,7 @@ public class FlowLayout extends ViewGroup {
 
                     top += itemMaxHeight;
                     top += mSpaceV;
+
                     itemMaxHeight = ch;
 
                     cl = left + leftMargin;

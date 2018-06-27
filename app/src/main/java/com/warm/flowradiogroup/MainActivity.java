@@ -9,19 +9,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
-import com.warm.flowlayout.FlowLayout;
+import com.warm.flowlayout.FlowRadioGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private FlowLayout radio;
+    private FlowRadioGroup radio;
     private Button bt_add, bt_delete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        radio = (FlowLayout) findViewById(R.id.radio);
+        radio = (FlowRadioGroup) findViewById(R.id.radio);
         bt_add = (Button) findViewById(R.id.bt_add);
         bt_delete = (Button) findViewById(R.id.bt_delete);
         bt_add.setOnClickListener(this);
