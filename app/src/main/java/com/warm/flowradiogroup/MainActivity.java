@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
+import com.warm.flowlayout.FlowLayout;
 import com.warm.flowlayout.FlowRadioGroup;
 
 import java.util.ArrayList;
@@ -16,12 +17,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FlowRadioGroup radio;
+    private FlowLayout flow;
     private Button bt_add, bt_delete;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         radio = (FlowRadioGroup) findViewById(R.id.radio);
+        flow = (FlowLayout) findViewById(R.id.flow);
         bt_add = (Button) findViewById(R.id.bt_add);
         bt_delete = (Button) findViewById(R.id.bt_delete);
         bt_add.setOnClickListener(this);
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tags.add("不好不好不好不好不好不好");
 
         for (int i = 0; i < tags.size(); i++) {
-            radio.addView(buildButton(tags.get(i)));
+            radio.addView(buildRadioButton(tags.get(i)));
         }
     }
 
@@ -58,24 +62,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void add() {
 
-        radio.addView(buildButton("不好不好不好不好不好不好"));
+        radio.addView(buildRadioButton("不好不好不好不好不好不好"));
+        flow.addView(buildButton("这是按钮"));
     }
 
-    private RadioButton buildButton(String tag) {
+    private RadioButton buildRadioButton(String tag) {
         RadioButton rb = new RadioButton(this);
         rb.setBackgroundResource(R.drawable.bg_profit_rg);
         rb.setButtonDrawable(new ColorDrawable(ContextCompat.getColor(this, android.R.color.transparent)));
         rb.setTextSize(14);
         rb.setGravity(Gravity.CENTER);
-        rb.setText( tag);
+        rb.setText(tag);
         rb.setTextColor(ContextCompat.getColorStateList(this, R.color.text_profit));
 //        rb.setLayoutParams(new FlowRadioGroup.LayoutParams(DisplayUtil.dp2px(this, 56), DisplayUtil.dp2px(this, 24)));
         return rb;
     }
 
+    private Button buildButton(String tag) {
+        Button rb = new Button(this);
+        rb.setTextSize(14);
+        rb.setText(tag);
+        rb.setTextColor(ContextCompat.getColorStateList(this, R.color.text_profit));
+        return rb;
+    }
+
+
     private void delete() {
         if (radio.getChildCount() != 0) {
             radio.removeViewAt(radio.getChildCount() - 1);
+        }
+        if (flow.getChildCount() != 0) {
+            flow.removeViewAt(flow.getChildCount() - 1);
         }
     }
 }
