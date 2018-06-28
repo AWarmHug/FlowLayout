@@ -29,6 +29,8 @@
 
 V1.0.4：
 
-修复child设置margin的问题，如果设置了固定horizontalSize，那么子控件会相应移动，如果是左右margin，那么会缩小，如果未设置horizontalSize，那么会移动换行。
+修复child设置margin的问题：
+如果设置了固定horizontalSize，之前不允许设置左右margin的，现在子控件会相应移动和缩小，
+如果未设置horizontalSize，那么会移动换行。
 
 其实一般情况下，设置space就已经足够了，但是比如添加CardView时，为了显示阴影，就必须设置margin。
