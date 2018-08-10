@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="FlowLayout">
-        <attr name="horizontalSize" format="integer" />
+        <attr name="horizontalSize" format="integer|enum" >
+            <enum name="nine" value="-1"/>
+        </attr>
         <attr name="spaceH" format="dimension" />
         <attr name="spaceV" format="dimension" />
     </declare-styleable>

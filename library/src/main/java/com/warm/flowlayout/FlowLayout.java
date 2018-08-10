@@ -29,6 +29,10 @@ public class FlowLayout extends ViewGroup {
      */
     private int mHorizontalSize;
 
+    private int mRealHorizontalSize;
+
+    public static final int NINE = -1;
+
     public FlowLayout(Context context) {
         this(context, null);
     }
@@ -40,6 +44,8 @@ public class FlowLayout extends ViewGroup {
             int item = array.getIndex(i);
             if (item == R.styleable.FlowLayout_horizontalSize) {
                 mHorizontalSize = array.getInt(item, 0);
+                setHorizontalSize(mHorizontalSize);
+
             } else if (item == R.styleable.FlowLayout_spaceH) {
                 mSpaceH = array.getDimensionPixelSize(item, 0);
             } else {
@@ -47,7 +53,6 @@ public class FlowLayout extends ViewGroup {
             }
         }
         array.recycle();
-
     }
 
     public int getHorizontalSize() {
@@ -56,6 +61,17 @@ public class FlowLayout extends ViewGroup {
 
     public void setHorizontalSize(int horizontalSize) {
         this.mHorizontalSize = horizontalSize;
+        if (!isNine()) {
+            setRealHorizontalSize(mHorizontalSize);
+        }
+    }
+
+    private boolean isNine(){
+        return mHorizontalSize == NINE;
+    }
+
+    private void setRealHorizontalSize(int realHorizontalSize) {
+        this.mRealHorizontalSize = realHorizontalSize;
     }
 
     public int getSpaceH() {
@@ -74,7 +90,6 @@ public class FlowLayout extends ViewGroup {
         this.mSpaceV = spaceV;
     }
 
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         //获取宽度
@@ -87,6 +102,21 @@ public class FlowLayout extends ViewGroup {
         int x = getPaddingLeft() + getPaddingRight();
         int y = getPaddingTop() + getPaddingBottom();
         int itemMaxHeight = 0;
+        if (isNine()) {
+            switch (getChildCount()) {
+                case 1:
+                    setRealHorizontalSize(1);
+                    break;
+                case 2:
+                case 4:
+                    setRealHorizontalSize(2);
+                    break;
+                default:
+                    setRealHorizontalSize(3);
+                    break;
+            }
+        }
+
         for (int i = 0; i < getChildCount(); i++) {
             final View child = getChildAt(i);
             if (child.getVisibility() != View.GONE) {
@@ -143,14 +173,24 @@ public class FlowLayout extends ViewGroup {
     protected void measureChildWithMargins(View child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec, int heightUsed) {
         final MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
 
-        int itemWidth;
+        int itemWidth = lp.width;
+        int itemHeight = lp.height;
         int childWidthMeasureSpec;
         int childHeightMeasureSpec;
 
-        if (mHorizontalSize != 0) {
-            itemWidth = (MeasureSpec.getSize(parentWidthMeasureSpec) - (getPaddingLeft() + getPaddingRight()) - (mHorizontalSize - 1) * mSpaceH) / mHorizontalSize - (lp.leftMargin + lp.rightMargin);
-        } else {
-            itemWidth = lp.width;
+        if (mRealHorizontalSize != 0) {
+            itemWidth = (MeasureSpec.getSize(parentWidthMeasureSpec) - (getPaddingLeft() + getPaddingRight()) - (mRealHorizontalSize - 1) * mSpaceH) / mRealHorizontalSize - (lp.leftMargin + lp.rightMargin);
+            if (isNine()) {
+                switch (getChildCount()) {
+                    case 1:
+                        itemHeight = itemWidth / 2;
+                        break;
+
+                    default:
+                        itemHeight = itemWidth;
+                        break;
+                }
+            }
         }
 
         childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec,
@@ -158,7 +198,7 @@ public class FlowLayout extends ViewGroup {
                         + widthUsed, itemWidth);
         childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec,
                 getPaddingTop() + getPaddingBottom() + lp.topMargin + lp.bottomMargin
-                        + heightUsed, lp.height);
+                        + heightUsed, itemHeight);
         child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
     }
 
@@ -166,21 +206,30 @@ public class FlowLayout extends ViewGroup {
     protected void measureChild(View child, int parentWidthMeasureSpec, int parentHeightMeasureSpec) {
         final ViewGroup.LayoutParams lp = child.getLayoutParams();
 
-        int itemWidth;
-
+        int itemWidth = lp.width;
+        int itemHeight = lp.height;
         int childWidthMeasureSpec;
         int childHeightMeasureSpec;
 
-        if (mHorizontalSize != 0) {
-            itemWidth = (MeasureSpec.getSize(parentWidthMeasureSpec) - (getPaddingLeft() + getPaddingRight()) - (mHorizontalSize - 1) * mSpaceH) / mHorizontalSize;
-        } else {
-            itemWidth = lp.width;
+        if (mRealHorizontalSize != 0) {
+            itemWidth = (MeasureSpec.getSize(parentWidthMeasureSpec) - (getPaddingLeft() + getPaddingRight()) - (mRealHorizontalSize - 1) * mSpaceH) / mHorizontalSize;
+            if (isNine()) {
+                switch (getChildCount()) {
+                    case 1:
+                        itemHeight = itemWidth / 2;
+                        break;
+
+                    default:
+                        itemHeight = itemWidth;
+                        break;
+                }
+            }
         }
         childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec,
                 getPaddingLeft() + getPaddingRight(), itemWidth);
 
         childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec,
-                getPaddingTop() + getPaddingBottom(), lp.height);
+                getPaddingTop() + getPaddingBottom(), itemHeight);
 
         child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
     }
