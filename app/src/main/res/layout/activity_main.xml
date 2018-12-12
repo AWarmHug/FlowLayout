@@ -79,7 +79,6 @@
                 android:paddingTop="10dp"
                 android:text="折扣套餐6"
                 android:textSize="12sp" />
-
         </com.warm.flowlayout.FlowLayout>
 
 
